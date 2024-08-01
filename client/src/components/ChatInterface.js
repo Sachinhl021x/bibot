@@ -1,58 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react';
+import { sendChatMessage } from '../services/api';
 import './ChatInterface.css';
 
 const ChatInterface = () => {
   const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
+  const [input, setInput] = useState('');
+  const messagesEndRef = useRef(null);
 
-  const handleInputChange = (e) => {
-    setInputMessage(e.target.value);
-  };
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
-  const handleSendMessage = async () => {
-    if (inputMessage.trim() === '') return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (input.trim() === '') return;
 
-    const newMessage = {
-      content: inputMessage,
-      sender: 'user',
-      timestamp: new Date().toISOString(),
-    };
-
-    setMessages([...messages, newMessage]);
-    setInputMessage('');
+    const userMessage = { text: input, sender: 'user' };
+    setMessages(prevMessages => [...prevMessages, userMessage]);
 
     try {
-      const response = await axios.post('/api/chat', { message: inputMessage });
-      const botResponse = {
-        content: response.data.message,
-        sender: 'bot',
-        timestamp: new Date().toISOString(),
-      };
-      setMessages((prevMessages) => [...prevMessages, botResponse]);
+      const response = await sendChatMessage(input);
+      const botMessage = { text: response.message, sender: 'bot' };
+      setMessages(prevMessages => [...prevMessages, botMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
+      const errorMessage = { text: 'An error occurred. Please try again.', sender: 'bot' };
+      setMessages(prevMessages => [...prevMessages, errorMessage]);
     }
+
+    setInput('');
   };
 
   return (
     <div className="chat-interface">
+      <h1 className="chat-header">BIBot Chat</h1>
       <div className="chat-messages">
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
-            {message.content}
+            {message.text}
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
-      <div className="chat-input">
+      <form onSubmit={handleSubmit} className="chat-input-form">
         <input
           type="text"
-          value={inputMessage}
-          onChange={handleInputChange}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Type your message..."
+          className="chat-input"
         />
-        <button onClick={handleSendMessage}>Send</button>
-      </div>
+        <button type="submit" className="chat-submit">Send</button>
+      </form>
     </div>
   );
 };
