@@ -1,3 +1,19 @@
+> You are a full stack software engineer guiding and teaching junior software engineer about full stack web development. You are give a project requirments and current status. you need to guide the junior software engineer to complete the tasks by each line of code,its syntax and logic meaning,  which directory to run and others in detail without making any assumptions.
+
+> Also, when user says 'summarise', you need to provide updated below requirements numbered 1 to 6 in very detail and without making assumption: 
+   1. # Executed below commands: update the executed commands, along with the old executed commands you can find below in Current Implementation status 
+   2. # Packages Installed: update the executed commands, along with the old installed packages you can find below in Current Implementation status 
+   3. # Current Project Structure artifacts: update the current project structure, over the old project structure mentioned in Current Implementation status 
+   4. # Completed Steps: update the latested completed steps considering earlier completed steps mentioned in Current Implementation status 
+   5. # Next Steps:  update the next steps to do, considering earlier planned and completed steps as mentioned above for earlier steps. you can refer earlier planned project steps planning in Current Implementation status below.
+   6. # file update details: list out the code (.js, .css and package.json) file names that were updated or changed or added along with detailed description what changes/updates/newfile does in detail without making assumptions or taking shortcuts.
+   7. # Give guidance to user to commit the changes to git by doing below 7.1 and 7.2 tasks.
+       7.1 while commiting changes to git, user should following meaningful name  "Basic project structure for BIBot.brd.v1" by changing v version number i.e v1, v2, v3,... etc and later user should push the changes
+       7.2 after pushing they should upload the files to remote git as a new branch using above meaningful name used in 7.1 and remote git link:https://github.com/Sachinhl021x/bibot 
+   8. # Generate MRD file, By updating section starting from -> ## Below is the Current Implementation status to acheive above mentioned goals:
+   
+
+## Project requirments:
 # BIBot - AI-Powered Chat Application with RAG Functionality and Agent Interface
 
 ## 1. Project Overview
@@ -277,17 +293,31 @@ cd ..
 npm init -y
 npm install --save-dev concurrently
 npm run install-all
+cd client/src
+mkdir components
+cd client/src/components
+touch ChatInterface.js
+touch client/src/components/ChatInterface.css
+npm install axios
+nvm install 16
+nvm use 16
+cd /path/to/your/bibot/client
+rm -rf node_modules
+npm install
+cd ..
+
+
 
 # Packages Installed:
 
     In Root directory: installed concurrently (dev dependency)
     In Server directory: express, dotenv, aws-sdk, openai, @anthropic-ai/sdk,@langchain/langgraph, @langchain/openai, @langchaincommunit, nodemon (dev dependency)
-    In Client: All default packages from Create React App
+    In Client: All default packages from Create React App, axios
 # Port Configuration:
    Server running on port 3000
    Client running on port 3002 
-# Current Project Structure:
-  bibot/
+# Current Project Structure: # Current Project Structure: # Completed Steps ## Next Steps
+bibot/
 ├── server/
 │   ├── app.js
 │   ├── package.json
@@ -295,6 +325,11 @@ npm run install-all
 ├── client/
 │   ├── public/
 │   ├── src/
+│   │   ├── components/
+│   │   │   ├── ChatInterface.js
+│   │   │   └── ChatInterface.css
+│   │   ├── App.js
+│   │   └── App.css
 │   ├── package.json
 │   └── .env
 ├── package.json
@@ -302,14 +337,19 @@ npm run install-all
 
 # Completed Steps
 
-Set up project directory structure
-Initialized Git repository
-Created server with Express.js
-Created client with Create React App
-Set up concurrent running of server and client
-Installed necessary packages for both server and client
-Configured basic server in app.js
-Set up environment variables for server
+1.Set up project directory structure
+2.Initialized Git repository
+3.Created server with Express.js
+4.Created client with Create React App
+5.Set up concurrent running of server and client
+6.Installed necessary packages for both server and client
+7.Configured basic server in app.js
+8.Set up environment variables for server
+9.Implemented basic ChatInterface component
+10.Created separate CSS file for ChatInterface
+11.Updated App.js to include ChatInterface
+12.Installed axios for HTTP requests
+13.Downgraded Node.js to version 16 to resolve OpenSSL issues
 
 ## Next Steps
 
@@ -317,6 +357,10 @@ Set up environment variables for server
       Create ChatInterface component in React
       Implement state management for chat history
       Add input field for user messages
+      Task to do:
+      > Finish Chat Interface implementation: 
+        Test the current implementation
+        Refine styling and layout
 
 
 2. Set up AI Model Integration
