@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import { sendChatMessage } from '../services/api';
 import './ChatInterface.css';
-
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 const ChatInterface = ({ selectedModel, isRagEnabled }) => {
   const [messages, setMessages] = useState([]);
@@ -30,16 +28,14 @@ const ChatInterface = ({ selectedModel, isRagEnabled }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${API_URL}/api/chat`, {
-        message: inputMessage,
-        model: selectedModel,
-        useRag: isRagEnabled
-      });
+      console.log(`Sending message: model=${selectedModel}, useRag=${isRagEnabled}, message="${inputMessage}"`);
+      const response = await sendChatMessage(inputMessage, selectedModel, isRagEnabled);
+      console.log("Received response:", response);
 
       const aiMessage = { 
         type: 'ai', 
-        content: response.data.response,
-        context: isRagEnabled ? response.data.context : null
+        content: response.response,
+        context: isRagEnabled ? response.context : null
       };
       setMessages(prevMessages => [...prevMessages, aiMessage]);
     } catch (error) {
@@ -59,9 +55,7 @@ const ChatInterface = ({ selectedModel, isRagEnabled }) => {
             {message.context && (
               <div className="context">
                 <h4>Relevant Context:</h4>
-                {message.context.map((doc, i) => (
-                  <p key={i}>{doc.pageContent}</p>
-                ))}
+                <p>{message.context}</p>
               </div>
             )}
           </div>

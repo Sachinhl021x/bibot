@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const { initializeChroma } = require('./services/chromaService');
 const chatController = require('./controllers/chatController');
 const uploadRoutes = require('./routes/uploadRoutes');
 
@@ -18,17 +19,22 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Root route
+// Routes
 app.get('/', (req, res) => {
   res.send('BIBot server is running');
 });
 
-// Chat route
 app.post('/api/chat', chatController.handleChatMessage);
-
-// File upload routes
 app.use('/api', uploadRoutes);
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// Initialize Chroma before starting the server
+initializeChroma()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Failed to initialize Chroma:', error);
+    process.exit(1);
+  });

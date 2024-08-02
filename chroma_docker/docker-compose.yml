@@ -1,0 +1,11 @@
+services:
+  chroma:
+    build: .
+    volumes:
+      - chroma_data:/chroma/chroma
+    ports:
+      - 8000:8000
+
+volumes:
+  chroma_data:
+    driver: local
