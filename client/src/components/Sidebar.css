@@ -1,0 +1,23 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .sidebar h2 {
+    margin-bottom: 20px;
+  }
+  
+  .model-selection,
+  .file-upload {
+    margin-bottom: 20px;
+  }
+  
+  .model-selection select,
+  .file-upload input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+  }

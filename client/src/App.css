@@ -1,4 +1,6 @@
 .App {
+  display: flex;
+  height: 100vh;
   text-align: center;
 }
 
@@ -26,6 +28,24 @@
 
 main {
   padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ChatInterface {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.Sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .App-link {

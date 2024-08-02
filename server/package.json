@@ -2,6 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "main": "app.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
@@ -10,17 +11,23 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.3",
-    "@langchain/community": "^0.2.20",
+    "@langchain/community": "^0.2.22",
     "@langchain/langgraph": "^0.0.31",
     "@langchain/openai": "^0.2.5",
-    "aws-sdk": "^2.1664.0",
+    "@xenova/transformers": "^2.17.2",
+    "aws-sdk": "^2.1666.0",
+    "chromadb": "^1.8.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "langchain": "^0.2.11",
-    "openai": "^4.53.2"
+    "langchain": "^0.2.12",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.54.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
