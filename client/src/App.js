@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './App.css';
 import ChatInterface from './components/ChatInterface';
 import Sidebar from './components/Sidebar';
+import AgentInterface from './components/AgentInterface';
 import { uploadFile } from './services/api';
 
 function App() {
   const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo');
   const [isRagEnabled, setIsRagEnabled] = useState(false);
   const [uploadStatus, setUploadStatus] = useState('');
+  const [showAgentInterface, setShowAgentInterface] = useState(false);
 
   const handleModelSelect = (model) => {
     setSelectedModel(model);
@@ -28,6 +30,10 @@ function App() {
     setIsRagEnabled(enabled);
   };
 
+  const toggleInterface = () => {
+    setShowAgentInterface(!showAgentInterface);
+  };
+
   return (
     <div className="App">
       <Sidebar
@@ -36,10 +42,19 @@ function App() {
         onRagToggle={handleRagToggle}
         uploadStatus={uploadStatus}
       />
-      <ChatInterface
-        selectedModel={selectedModel}
-        isRagEnabled={isRagEnabled}
-      />
+      <div className="main-content">
+        <button onClick={toggleInterface} className="toggle-interface-btn">
+          {showAgentInterface ? 'Switch to Chat Interface' : 'Switch to Agent Interface'}
+        </button>
+        {showAgentInterface ? (
+          <AgentInterface />
+        ) : (
+          <ChatInterface
+            selectedModel={selectedModel}
+            isRagEnabled={isRagEnabled}
+          />
+        )}
+      </div>
     </div>
   );
 }
