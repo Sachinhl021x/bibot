@@ -1,0 +1,88 @@
+.agent-interface {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .agent-interface h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .agent-interface form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .agent-interface label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .agent-interface select,
+  .agent-interface input[type="file"],
+  .agent-interface textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .agent-interface textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .agent-interface button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .agent-interface button:hover {
+    background-color: #0056b3;
+  }
+  
+  .agent-interface button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .generated-code,
+  .output {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+  }
+  
+  .generated-code h3,
+  .output h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .generated-code pre,
+  .output pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .error-message {
+    color: #d9534f;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+  }
